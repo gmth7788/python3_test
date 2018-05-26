@@ -8,9 +8,9 @@ import re
 def search_desired(line, f):
     m1 = re.match(r"(.*)(https://pan.baidu.com/(.*))(</a>)(.*)+", line)
     m2 = re.match(r'(.*)20140803" >[：| ]?([0-9a-z]+)(<br>|</div>)', line)  
-#    m3 = re.match(r'(.*)<br>(([0-9]+.)?(王菲)?《(.*?)》)(.*)', line)  
-#    if m1 and m2 and m3:
-    if m1 and m2:
+    m3 = re.match(r'(.*)<br>(([0-9]+.)?(王菲)?《(.*?)》)(.*)', line)  
+    if m1 and m2 and m3:
+#    if m1 and m2:
 #        print(m3.group(0))
 #        print(m3.group(1))
 #        print(m3.group(2))
@@ -22,11 +22,11 @@ def search_desired(line, f):
 #        code = m2.group(2).strip('\n\r')
         name = m1.group(2).strip()
         code = m2.group(2).strip()
-#        title = m3.group(2).strip()
-#        print(title+", "+name+", "+code+"\n")
-#        f.write(title+", "+name+", "+code+"\n")
-        print(name+", "+code+"\n")
-        f.write(name+", "+code+"\n")
+        title = m3.group(2).strip()
+        print(title+", "+name+", "+code+"\n")
+        f.write(title+", "+name+", "+code+"\n")
+#        print(name+", "+code+"\n")
+#        f.write(name+", "+code+"\n")
               
     
 
@@ -51,7 +51,7 @@ if __name__=="__main__":
 #    process_file(webpage, f)
 #    webpage.close()
     
-    for i in range(13):
+    for i in range(7):
         url="http://tieba.baidu.com/p/5493737812?pn=" + str(i+1)
         print(url)
         webpage = urllib.request.urlopen(url)
